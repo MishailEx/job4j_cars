@@ -1,9 +1,12 @@
+package model;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name = "engine")
-public class Engine {
+@Table(name = "body")
+public class Body {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private String name;
 }
