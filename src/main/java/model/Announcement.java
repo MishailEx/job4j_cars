@@ -1,6 +1,7 @@
 package model;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -11,12 +12,22 @@ public class Announcement {
     private int id;
     private String description;
     private boolean sold;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date created;
     @ManyToOne
     private Car car;
     @ManyToOne
     private Author author;
 
     public Announcement() {
+    }
+
+    public Announcement(String description, boolean sold, Date created, Car car, Author author) {
+        this.description = description;
+        this.sold = sold;
+        this.created = created;
+        this.car = car;
+        this.author = author;
     }
 
     public int getId() {
@@ -59,6 +70,14 @@ public class Announcement {
         this.author = author;
     }
 
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -68,18 +87,18 @@ public class Announcement {
             return false;
         }
         Announcement that = (Announcement) o;
-        return id == that.id && sold == that.sold && Objects.equals(description, that.description) && Objects.equals(car, that.car) && Objects.equals(author, that.author);
+        return id == that.id && sold == that.sold && Objects.equals(description, that.description) && Objects.equals(created, that.created) && Objects.equals(car, that.car) && Objects.equals(author, that.author);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, description, sold, car, author);
+        return Objects.hash(id, description, sold, created, car, author);
     }
 
     @Override
     public String toString() {
         return "Announcement{ id=" + id + ", description='" + description
-                + '\'' + ", sold=" + sold + ", car=" + car
-                + ", author=" + author + '}';
+                + '\'' + ", sold=" + sold + ", created=" + created
+                + ", car=" + car + ", author=" + author + '}';
     }
 }

@@ -12,8 +12,21 @@ public class Image {
     private int id;
     private byte[] imageData;
     private String imageFileName;
+    @ManyToOne
+    private Car car;
 
     public Image() {
+    }
+
+    public Image(byte[] imageData, String imageFileName) {
+        this.imageData = imageData;
+        this.imageFileName = imageFileName;
+    }
+
+    public Image(byte[] imageData, String imageFileName, Car car) {
+        this.imageData = imageData;
+        this.imageFileName = imageFileName;
+        this.car = car;
     }
 
     public int getId() {

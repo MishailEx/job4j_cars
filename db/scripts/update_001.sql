@@ -1,4 +1,4 @@
-create table user
+create table users
 (
     id   serial primary key,
     name VARCHAR NOT NULL UNIQUE,
@@ -8,7 +8,7 @@ create table user
 create table image
 (
     id   serial primary key,
-    imageData      blob not null,
+    imageData      bytea not null,
     imageName VARCHAR(30) not null,
     car_id int not null references car (id)
 );
@@ -42,6 +42,7 @@ create table author
 create table announcement
 (
     id          serial primary key,
+    created     timestamp NOT NULL,
     description VARCHAR NOT NULL,
     sold        boolean NOT NULL,
     author_id   int     not null references author (id),
