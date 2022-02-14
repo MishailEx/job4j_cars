@@ -8,7 +8,12 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.function.Function;
 
 public class AdRepository {
@@ -34,11 +39,21 @@ public class AdRepository {
     }
 
 
-    public List<Announcement> lastDayAnnouncements() {
+    public List<Announcement> lastDayAnnouncements() throws ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy", Locale.ENGLISH);
+        Calendar c = Calendar.getInstance();
+        Date current = new Date();
+        c.setTime(current);
+        c.add(Calendar.DATE, 1);
+        String frmDate = formatter.format(current);
+        String enDate = formatter.format(c.getTime());
         return this.tx(session -> session.createQuery("select distinct an from Announcement an "
-                + "join fetch an.car c "
-                + "join fetch c.images "
-                + "where an.created > CURRENT_DATE").list());
+               + "join fetch an.car c "
+               + "join fetch c.images "
+               + "where an.created BETWEEN :stDate AND :edDate")
+                .setParameter("stDate", frmDate)
+                .setParameter("edDate", enDate)
+                .list());
     }
 
     public List<Announcement> hasImageAnnouncements() {
