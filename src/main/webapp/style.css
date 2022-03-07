@@ -1,0 +1,113 @@
+th,
+td {
+    border-bottom: 1px solid #cecfd5;
+    padding: 10px 15px;
+}
+
+.headFirst {
+    height: 100%;
+    float: left;
+}
+
+.headFirst p {
+    text-align: center;
+    padding-top: 10px
+}
+
+table thead th:first-child {
+    text-align: left;
+    padding: 10px 15px;
+}
+
+table thead th {
+    text-align: center;
+    padding: 10px 15px;
+}
+
+table tbody td:first-child {
+    text-align: left;
+    padding: 10px 15px;
+}
+
+table tbody td {
+    text-align: center;
+    padding: 10px 15px;
+}
+
+.buttonAll {
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    background-color: #f3eeee;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin-top: 4px;
+    margin-left: 20px;
+    padding: 5px 5px;
+    cursor: pointer;
+    border-radius: 3px;
+    border: none;
+}
+
+.buttonAll:hover {
+    background-color: #959595;
+    color: white;
+}
+
+.select {
+    float: right;
+    height: 38px;
+    width:110px;
+    font-size: 16px;
+    margin-left: 20px;
+    margin-top: 3px;
+    padding: 5px 5px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.selectAdd {
+    float: left;
+}
+
+#announcement {
+    float: left;
+    height: 100%;
+    width: 100%;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+#img {
+    float: left;
+    width: 150px;
+    height: 100%;
+    margin-right: 5px;
+}
+#dataCar {
+    float: left;
+    width: 400px;
+    height: 100%;
+    margin-left: 10px;
+}
+
+#pr {
+    font-size: 25px;
+    color: #c11818;
+}
+
+#ann2 {
+    width: 80%; /* Ширина слоя */
+    height: 100%; /* Высота слоя */
+}
+#ann2 #dataCar #nameAnn a {
+    display: block; /* Ссылка как блочный элемент */
+    height: 100%; /* Высота на весь слой */
+}
+
+.header a {
+    color: azure;
+}
+
+
+

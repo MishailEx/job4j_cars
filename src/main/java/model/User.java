@@ -1,16 +1,17 @@
 package model;
 
 import javax.persistence.*;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String password;
+    private int numAnnouncement = 0;
 
     public User() {
     }
@@ -44,6 +45,14 @@ public class User {
         this.password = password;
     }
 
+    public int getNumAnnouncement() {
+        return numAnnouncement;
+    }
+
+    public void setNumAnnouncement(int numAnnouncement) {
+        this.numAnnouncement = numAnnouncement;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -64,6 +73,6 @@ public class User {
     @Override
     public String toString() {
         return "User{ id=" + id + ", name='" + name + '\''
-                + ", password='" + password + '}';
+                + ", password='" + password + "numAnn= " + numAnnouncement + '}';
     }
 }

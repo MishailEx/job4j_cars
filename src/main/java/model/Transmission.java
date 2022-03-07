@@ -4,17 +4,17 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "body")
-public class Body {
+@Table(name = "transmission")
+public class Transmission {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
 
-    public Body() {
+    public Transmission() {
     }
 
-    public Body(String name) {
+    public Transmission(String name) {
         this.name = name;
     }
 
@@ -42,18 +42,17 @@ public class Body {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Body body = (Body) o;
-        return id == body.id && Objects.equals(name, body.name);
+        Transmission that = (Transmission) o;
+        return id == that.id && Objects.equals(name, that.name);
     }
 
     @Override
     public int hashCode() {
-
         return Objects.hash(id, name);
     }
 
     @Override
     public String toString() {
-        return "Body{ id=" + id + ", name='" + name + '\'' + '}';
+        return "Transmission{ id=" + id + ", name='" + name + '}';
     }
 }

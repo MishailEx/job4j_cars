@@ -1,25 +1,24 @@
 package model;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
+
 @Entity
-@Table(name = "author")
-public class Author {
+@Table(name = "model")
+public class Model {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    @OneToMany
-    @JoinColumn(name = "author_id")
-    private Set<Announcement> announcements = new HashSet<>();
+    @OneToOne
+    private Mark mark;
 
-    public Author() {
+    public Model() {
     }
 
-    public Author(String name) {
+    public Model(String name, Mark mark) {
         this.name = name;
+        this.mark = mark;
     }
 
     public int getId() {
@@ -38,14 +37,6 @@ public class Author {
         this.name = name;
     }
 
-    public Set<Announcement> getAnnouncements() {
-        return announcements;
-    }
-
-    public void setAnnouncements(Set<Announcement> announcements) {
-        this.announcements = announcements;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -54,17 +45,18 @@ public class Author {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Author author = (Author) o;
-        return id == author.id && Objects.equals(name, author.name) && Objects.equals(announcements, author.announcements);
+        Model model = (Model) o;
+        return id == model.id && Objects.equals(name, model.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, announcements);
+        return Objects.hash(id, name);
     }
 
     @Override
     public String toString() {
-        return "Author{ id=" + id + ", name='" + name + '}';
+        return "Model{ id=" + id + ", name='" + name + '\''
+                + ", mark=" + mark + '}';
     }
 }

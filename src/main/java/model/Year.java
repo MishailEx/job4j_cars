@@ -4,17 +4,17 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "body")
-public class Body {
+@Table(name = "year")
+public class Year {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name;
+    private int name;
 
-    public Body() {
+    public Year() {
     }
 
-    public Body(String name) {
+    public Year(int name) {
         this.name = name;
     }
 
@@ -26,11 +26,11 @@ public class Body {
         this.id = id;
     }
 
-    public String getName() {
+    public int getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(int name) {
         this.name = name;
     }
 
@@ -42,18 +42,17 @@ public class Body {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Body body = (Body) o;
-        return id == body.id && Objects.equals(name, body.name);
+        Year year = (Year) o;
+        return id == year.id && Objects.equals(name, year.name);
     }
 
     @Override
     public int hashCode() {
-
         return Objects.hash(id, name);
     }
 
     @Override
     public String toString() {
-        return "Body{ id=" + id + ", name='" + name + '\'' + '}';
+        return "Year{ id=" + id + ", name='" + name + '}';
     }
 }

@@ -1,7 +1,6 @@
 package model;
 
 import javax.persistence.*;
-import java.util.Arrays;
 import java.util.Objects;
 
 @Entity
@@ -10,23 +9,13 @@ public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private byte[] imageData;
-    private String imageFileName;
-    @ManyToOne
-    private Car car;
+    private String pathToImg;
 
     public Image() {
     }
 
-    public Image(byte[] imageData, String imageFileName) {
-        this.imageData = imageData;
-        this.imageFileName = imageFileName;
-    }
-
-    public Image(byte[] imageData, String imageFileName, Car car) {
-        this.imageData = imageData;
-        this.imageFileName = imageFileName;
-        this.car = car;
+    public Image(String pathToImg) {
+        this.pathToImg = pathToImg;
     }
 
     public int getId() {
@@ -37,20 +26,12 @@ public class Image {
         this.id = id;
     }
 
-    public byte[] getImageData() {
-        return imageData;
+    public String getPathToImg() {
+        return pathToImg;
     }
 
-    public void setImageData(byte[] imageData) {
-        this.imageData = imageData;
-    }
-
-    public String getImageFileName() {
-        return imageFileName;
-    }
-
-    public void setImageFileName(String imageFileName) {
-        this.imageFileName = imageFileName;
+    public void setPathToImg(String pathToImg) {
+        this.pathToImg = pathToImg;
     }
 
     @Override
@@ -62,19 +43,16 @@ public class Image {
             return false;
         }
         Image image = (Image) o;
-        return id == image.id && Arrays.equals(imageData, image.imageData) && Objects.equals(imageFileName, image.imageFileName);
+        return id == image.id && Objects.equals(pathToImg, image.pathToImg);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(id, imageFileName);
-        result = 31 * result + Arrays.hashCode(imageData);
-        return result;
+        return Objects.hash(id, pathToImg);
     }
 
     @Override
     public String toString() {
-        return "Image{ id=" + id + ", imageData=" + Arrays.toString(imageData)
-                + ", imageFileName='" + imageFileName + '}';
+        return "Image{ id=" + id + ", pathToImg='" + pathToImg + '}';
     }
 }
